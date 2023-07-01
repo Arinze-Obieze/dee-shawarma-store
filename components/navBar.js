@@ -19,7 +19,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-100  border-b-2 py-1">
                 <div className="flex-none">
                     <button className="btn btn-square btn-ghost">
                         <BiMenuAltLeft size={40}

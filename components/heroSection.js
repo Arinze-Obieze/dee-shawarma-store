@@ -25,16 +25,9 @@ const HeroSection = () => {
                 <div className="space-x-7 mt-16">
                     <Link href={'#'}><button className="btn btn-outline text-yellow-600 ">Home Delivery</button></Link>
                     <Link href={'#'}><button className="btn btn-outline text-yellow-600 px-8 ">Location</button></Link>
-
                 </div>
-
-
             </div>
-
         </div>
-
-
-
     );
 };
 

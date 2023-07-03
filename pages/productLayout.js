@@ -1,29 +1,6 @@
-
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
-const Product = () => {
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const url = 'api/mongodb/connection';
-                const response = await fetch(url, {
-                    method: 'GET'
-                });
-                const jsonData = await response.json();
-                setData(jsonData);
-                //  console.log(jsonData);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, []);
-
-
-
+const ProductList = ({data}) => {
     return (
         <div>
             <div className="flex flex-wrap">
@@ -40,16 +17,14 @@ const Product = () => {
                                 <div> description:lorex ipsum lorem maxura</div>
                                 <div className="text-gray-600 border-4 ">Price: {item.number}</div>
                             </div>
-<div className="text-center mt-3">                            <button className="border-2 p-3 mx-auto bg-yellow-600 rounded-full ">Order Now</button>
-</div>                        </div>
+                            <div className="text-center mt-3">                            <button className="border-2 p-3 mx-auto bg-yellow-600 rounded-full ">Order Now</button>
+                            </div>                        </div>
                     </div>
                 ))}
             </div>
 
-
-
         </div>
     );
-};
+}
 
-export default Product;
+export default ProductList;

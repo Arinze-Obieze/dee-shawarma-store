@@ -5,7 +5,7 @@ import Footer from '@/components/footer'
 import HeroSection from '@/components/heroSection'
 import NavBar from '@/components/navBar'
 import SideMenu from '@/components/sideMenu'
-import Product from './product'
+import Product from './productData'
 
 
 const inter = Inter({ subsets: ['latin'] })

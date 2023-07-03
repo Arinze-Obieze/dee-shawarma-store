@@ -30,7 +30,7 @@ export default async function handler(req, res) {
         try {
             const shawarmas = await db.collection('shawarma').find().sort({ text: 1 }).toArray();
             res.status(200).json(shawarmas);
-            console.log(shawarmas);
+          /**  console.log(shawarmas); */
         } catch (error) {
             res.status(500).json({ error: 'Could not fetch the documents' });
         } finally {
@@ -40,27 +40,53 @@ export default async function handler(req, res) {
 
     // ...
 
-if (req.method === 'POST') {
-    const { client, db } = await Mongodbconnect();
-    try {
-        const { image, text, number } = req.body;
+    if (req.method === 'POST') {
+        const { client, db } = await Mongodbconnect();
+        try {
+            const { image, text, number } = req.body;
 
-        const result = await db.collection('shawarma').insertOne({
-            image: image,
-            text: text,
-            number: number,
-        });
-//console.log(req.body)
-        res.status(201).json(result);
-    } catch (error) {
-        console.log('Error', error);
-        res.status(500).json({ err: 'Could not create a new document', error: error });
-    } finally {
-        client.close();
+            const result = await db.collection('shawarma').insertOne({
+                image: image,
+                text: text,
+                number: number,
+            });
+            //console.log(req.body)
+            res.status(201).json(result);
+        } catch (error) {
+            console.log('Error', error);
+            res.status(500).json({ err: 'Could not create a new document', error: error });
+        } finally {
+            client.close();
+        }
     }
+
+
+
+
+    // ...
+
+    if (req.method === 'DELETE') {
+        const { client, db } = await Mongodbconnect();
+        try {
+            const { text } = req.query; 
+
+            const result = await db.collection('shawarma').deleteOne({ text: text });
+            if (result.deletedCount === 0) {
+                res.status(404).json({ error: 'Document not found' });
+            } else {
+                res.status(200).json({ message: 'Document deleted successfully' });
+            }
+        } catch (error) {
+            console.log('Error', error);
+            res.status(500).json({ error: 'Could not delete the document' });
+        } finally {
+            client.close();
+        }
+    }
+
+    // ...
+
+
+
 }
-
-
-
-    }
 
